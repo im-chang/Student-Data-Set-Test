@@ -1,11 +1,11 @@
-const studentGrades = require("../src/student-stats");
+const StudentStats = require("../src/student-stats");
 describe("Students Stats", () => {
   let statsMachine, processedData;
   beforeEach(() => {
     statsMachine = new StudentStats("../lib/data.json");
     processedData = {
-      projects: {
-        project1: {
+      projects : {
+        "project1": {
           passed: { number: 10, satisfaction: 10 },
           failed: { number: 10, satisfaction: 10 }
         }

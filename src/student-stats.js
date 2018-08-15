@@ -4,6 +4,4 @@ class StudentStats {
   }
 }
 
-module.exports = data => {
-  //TODO
-};
+module.exports = StudentStats 
