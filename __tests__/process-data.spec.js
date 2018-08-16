@@ -58,7 +58,9 @@ describe("Process Data", () => {
     it("should calculate the average satisfaction for failed students", () => {});
   });
   describe("Experience", () => {
-    it("should return average satisfaction for all years of experience present in the data", () => {});
+    it("should return average satisfaction for all years of experience present in the data", () => {
+      expect(processedData.demographics.satisfaction).toEqual("2.7");
+    });
   });
   describe("Demographics", () => {
     it("should return average age and satisfaction for the cohort", () => {
