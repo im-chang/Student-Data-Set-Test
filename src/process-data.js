@@ -1,3 +1,20 @@
 module.exports = data => {
-  // TODO
+  let ageAvg = 0;
+  let satisfactionAvg = 0;
+  let ageArray = [];
+  let satisfactionArray = [];
+  const reducer = (a, b) => a + b;
+  let demographics = {};
+  for (let i = 0; i < data.length; i++) {
+    let age = data[i]["age"];
+    let satisfaction = data[i]["satisfaction"];
+    ageArray.push(age);
+    satisfactionArray.push(satisfaction);
+    ageAvg = ageArray.reduce(reducer) / ageArray.length;
+    satisfactionAvg =
+      satisfactionArray.reduce(reducer) / satisfactionArray.length;
+  }
+  demographics.age = ageAvg.toFixed(1);
+  demographics.satisfaction = satisfactionAvg.toFixed(1);
+  return { demographics };
 };
