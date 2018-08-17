@@ -59,7 +59,10 @@ describe("Process Data", () => {
   });
   describe("Experience", () => {
     it("should return average satisfaction for all years of experience present in the data", () => {
-      //   expect(processedData.yearThreeAvg).toEqual(2);
+      expect(processedData.experience).toEqual({
+        "2": { satisfaction: 4 },
+        "3": { satisfaction: 2 }
+      });
     });
   });
   describe("Demographics", () => {

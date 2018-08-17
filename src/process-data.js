@@ -4,7 +4,8 @@ module.exports = data => {
   let yearThreeAvg = 0;
   let ageArray = [];
   let satisfactionArray = [];
-  let yearThreeArray = [];
+  let experience = {};
+  // let yearThreeArray = [];
   const reducer = (a, b) => a + b;
   let demographics = {};
   for (let i = 0; i < data.length; i++) {
@@ -15,13 +16,27 @@ module.exports = data => {
     ageAvg = ageArray.reduce(reducer) / ageArray.length;
     satisfactionAvg =
       satisfactionArray.reduce(reducer) / satisfactionArray.length;
-    if (data[i].yearsExperience == 3) {
-      let yearThree = data[i]["satisfaction"];
-      yearThreeArray.push(yearThree);
-      yearThreeAvg = yearThreeArray.reduce(reducer) / yearThreeArray.length;
+    yearsOfExp = data[i].yearsExperience;
+    if (experience[yearsOfExp] === undefined) {
+      experience[yearsOfExp] = { satisfaction: data[i].satisfaction };
+    } else {
+      current = experience[yearsOfExp].satisfaction;
+      experience[yearsOfExp] = {
+        satisfaction: (current + data[i].satisfaction) / 2
+      };
     }
   }
+
+  // if (experience[yearsOfExp] === undefined) {
+  //   // yearThree = data[i]["satisfaction"];
+  //   // yearThreeArray.push(yearThree);
+  //   // yearThreeAvg = yearThreeArray.reduce(reducer) / yearThreeArray.length;
+  // } else {
+  //   current = experience[yearsOfExp];
+  //   experience[yearsOfExp] = (current + data[i].satisfaction) / 2;
+  // }
+  // console.log(experience, "yearsofexps");
   demographics.age = ageAvg.toFixed(1);
   demographics.satisfaction = satisfactionAvg.toFixed(1);
-  return { demographics, yearThreeAvg };
+  return { demographics, experience };
 };
